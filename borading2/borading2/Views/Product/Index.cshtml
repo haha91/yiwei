@@ -1,0 +1,116 @@
+﻿@model IEnumerable<borading2.Models.ProductVIewModel>
+<script src="~/Scripts/productFunction.js"></script>
+<p>
+    <button type="button" class="product-create" id="product-create-button" onclick="openCreateModal()"
+            data-target="#productCreate">
+        Create
+    </button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <button type="button" class="product-edit" id="testbutton" onclick="openmodal(@item.Id)"
+                        data-target="#test">
+                    Edit
+                </button>
+                <button type="button" class="product-delete" id="product-delete-button" onclick="openDeleteModal(@item.Id)"
+                        data-target="#product-delete">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    }
+
+
+</table>
+
+<div id="test" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal B</h4>
+            </div>
+            <div class="modal-body">
+                <p>name:<input id="name-value" class="product-value" /></p>
+                <p>price:<input id="price-value" class="product-price" /></p>
+                <p class="hiden">Id:<input id="product-id" /></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="product-save" onclick="productSave()"></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="productCreate" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">A</h4>
+            </div>
+            <div class="modal-body">
+                <p>name:<input id="create-name-value" class="product-value"></p>
+                <p>price:<input id="create-price-value" class="product-price" /></p>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="product-save" onclick="newProductSave()">save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+//delete
+
+<div id="productDelete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Are you sure you want delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>name:<input id="product-delete-name-value" class="product-value"></p>
+                <p>price:<input id="product-delete-price-value" class="product-price" /></p>
+                <p class="hiden">Id:<input id="product-delete-id" /></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="product-delete-button" onclick="deleteProduct()">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

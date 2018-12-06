@@ -1,0 +1,156 @@
+﻿@model IEnumerable<borading2.Models.ProductSoldViewModel>
+<script src="~/Scripts/soldFunction.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<p>
+    <button type="button" class="sold-create" id="sold_create_button" onclick="createOpen()"
+            data-target="#soldCreate-box">
+        Create
+    </button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soldDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoreId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoreName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soldDate)
+        </td>
+        <td>
+            <button type="button" class="sold-edit" id="sold-eidt-button" onclick="openModal(@item.Id)"
+                    data-target="#sold-edit-box">
+                Edit
+            </button>
+            <button type="button" class="sold-delete" id="sold-delete-button" onclick="deleteOpen(@item.Id)"
+                    data-target="#sold-edit-box">
+                Delete
+            </button>
+        </td>
+    </tr>
+}
+
+</table>
+
+<div id="sold-edit-box" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal B</h4>
+            </div>
+            <div class="modal-body">
+                <p>Customer: <select id="customer-list"></select></p>
+                <p>Store: <select id="store-list"></select></p>
+                <p>Product: <select id="product-list"></select></p>
+                <p>Date: <input id="soldDate" /></p>
+                <p class="hidden">customer-id:<input id="customer-id" /></p>
+                <p class="hidden">prodcut-id<input id="product-id" /></p>
+                <p class="hidden">store-id<input id="store-id" /></p>
+                <p>Id:<input id="productSold-id" /></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="product-save" onclick="save()"> check</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="soldCreate-box" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">A</h4>
+            </div>
+            <div class="modal-body">
+                <p>Customer: <select id="create-customer-list"></select></p>
+                <p>Store: <select id="create-store-list"></select></p>
+                <p>Product: <select id="create-product-list"></select></p>
+                <p>Date: <input id="create-soldDate" /></p>
+            
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="product-save" onclick="createSave()">save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="sold-delete-box" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal B</h4>
+            </div>
+            <div class="modal-body">
+                <p>Customer: <select id="delete-customer-list"></select></p>
+                <p>Store: <select id="delete-store-list"></select></p>
+                <p>Product: <select id="delete-product-list"></select></p>
+                <p>Date: <input id="delete-soldDate" /></p>
+              
+                <p>Id:<input id="delete-productSold-id" /></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="product-save" onclick="soldDelete()"> check</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
